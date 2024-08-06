@@ -1,8 +1,11 @@
 {
-    "manifest_verison":3,
+    "manifest_version":3,
     "version":"1.0.0",
     "name":"supertab",
     "permissions":["tabs", "activeTab"],
+    "background":{
+        "scripts": ["background.js"]
+    },
     "chrome_tab_overrides":{
         "newtab":"newtab.html"
     }
