@@ -1,0 +1,8 @@
+{
+    "manifest-verison":3,
+    "version":"1.0.0",
+    "name":"supertab",
+    "chrome_tab_overrides":{
+        "newtab":"newtab.html"
+    }
+}
