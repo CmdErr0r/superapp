@@ -1,0 +1,12 @@
+.timer{
+  display:grid;
+  grid-template-rows:1fr 1fr;
+}
+.select-text{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+}
+.select{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+}
