@@ -3,8 +3,7 @@ browser.newtab.override({
 })
 
 
-document.addEventListener('DomContentLoader', ()=>{
-    console.log("nag:",nagivator,"and", 'getBattery' in nagivator)
-})
+console.log("nag:",nagivator,"and", 'getBattery' in nagivator)
+console.log("browser:",browser,"and", 'getBattery' in browser)
 
 console.log(1)
