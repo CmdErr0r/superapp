@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="timeline">
+        <div class="add">
+            add
+            <div class="addblock" id="addblock"><p></p><p></p><p></p><p></p></div>
+        </div>
+        <div class="show">
+            <div class="timebar" id="timebar">
+                
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const timebar = document.getElementById("timebar");
+        const time = document.getElementById("time");
+        const addtime = document.getElementById("addtime");
+        const addblock = document.getElementById("addblock");
+
+        times=["05:00", "06:00", "07:00","08:00","09:00","10:00","11:00","12:00", "13:00", "14:00", "15:00", "16:00","17:00", "18:00","19:00","20:00","21:00","22:00","23:00","00:00","1:00","2:00","3:00"]
+
+        window.addEventListener("load", myresize)
+        window.addEventListener("resize", myresize)
+        
+        function myresize(){
+            while (timebar.firstChild) {
+                timebar.removeChild(timebar.firstChild);
+            }
+            for (let i = 0; i < times.length; i++) {
+                const p = document.createElement("p")
+                p.clientWidth = timebar.clientWidth/12
+                p.innerText = times[i]
+                timebar.appendChild(p)
+            }
+        }
+
+        let active=false
+        let timer = 0
+        addblock.addEventListener("click", () => {
+            addblock.classList.toggle("addblocker")
+            active=true
+
+            if(timer<4 && timer>0){
+                addblock.childNodes[timer].classList.add("active")
+            }
+        })
+        document.addEventListener('keydown', function(event) {
+            if(active){
+                num = event.keyCode - 48
+                if(num>=0 && num<=9){
+                    if(timer<4){
+                        addblock.childNodes[timer].innerText = num
+                        addblock.childNodes[timer].classList.remove("active")
+                    }
+
+                    timer++
+
+                    if(timer<4){
+                        console.log(timer)
+                        addblock.childNodes[timer].classList.add("active")
+                    } 
+                }
+                else if(num==-40){
+                    if(timer>0){
+                        addblock.childNodes[timer].classList.remove("active")
+                    }
+
+                    timer--
+                    console.log(timer)
+
+                    if(timer>0){
+                        addblock.childNodes[timer].innerText = ""
+                        addblock.childNodes[timer].classList.add("active")
+                    }
+                }
+            }
+        });
+
+        function addkey(index) {
+            addblock.childNodes[timer].innerText = num
+        }
+        
+        function removekey(index) {
+            addblock.childNodes[timer].innerText = num
+        }
+
+    </script>
+</body>
+</html>

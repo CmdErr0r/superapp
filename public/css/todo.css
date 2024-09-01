@@ -1,0 +1,29 @@
+
+.todo {
+}
+.todo-search {
+    padding: 0;
+    height: 6rem;
+    width: 91%;
+    resize: vertical;
+    margin-left: 8px;
+}
+
+#addTodo {
+    display: block;
+    float: right;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    background: var(--three);
+    color: #fff;
+    transition: all .3s;
+    border:2px solid transparent;
+}
+
+#addTodo:hover{
+    background: #fff;
+    color: var(--three);
+    border:2px solid var(--three);
+}

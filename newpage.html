@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/calender.css"></link>
+    <link rel="stylesheet" href="public/css/todo.css"></link>
+    <link rel="stylesheet" href="public/css/popup.css"></link>
+    <link rel="stylesheet" href="public/css/term.css"></link>
+    <style>
+        .menu-icon .line {
+            background-color: aqua;
+            transition: all 0.5s ease;    
+        }
+
+        .menu-icon:hover .line{
+            x1: 20;
+            y1: 20;
+            x2: 30;
+            y2: 30;
+        }
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <!-- <nav id="root">
+            <button>Main</button>
+            <button>Calender</button>
+            <button>Todo</button>
+            <button>Clock</button>
+        </nav> -->
+
+        <div id="main">
+            <div>
+                clock
+            </div>
+            <div class="addition">
+                <section class="term">
+                    <div class="term-search">Todo</div>
+                    <div class="term-list"></div>
+                </section>
+                
+                <svg id="menu-icon" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="0" x2="10" y2="10" style="stroke:red;stroke-width:2" />
+                    <line x1="10" y1="10" x2="0" y2="20" style="stroke:red;stroke-width:2" />
+                </svg>
+
+                <section class="addition-panel" id="addition-panel">
+                    <section class="calender">
+                        <section class="calender-head">
+                            <button>🔺</button>
+                                <div class="calender-head-year"></div>
+                                <div class="calender-head-month"></div>
+                            <button>🔻</button>
+                        </section>
+                        <section class="calender-body">
+                            <div>
+                                <li>pt</li>
+                                <li>sa</li>
+                                <li>ça</li>
+                                <li>pe</li>
+                                <li>cu</li>
+                                <li>ct</li>
+                                <li>pa</li>
+                            </div>
+                            <div class="calender-body-list"></div>
+                        </section>
+                    </section>
+                    
+                    
+                    <section class="todo">
+                        <textarea class="todo-search"></textarea>
+                        <button id="addTodo">Submit</button>
+                    </section>
+                    
+                </section>
+
+                <div class="addition-setting">
+                    <button id="addPanel"><img src="public/calendar.svg"></button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <script>
+        const a = document.querySelector("#menu-icon line:first-child");
+        const b = document.querySelector("#menu-icon line:last-child");
+
+
+        function openDialog(c=1){
+            t = 0;
+
+            console.log("t",t)
+            ax1 = parseInt(a.getAttribute("x1"));
+            ab = parseInt(a.getAttribute("x2"));
+            bx2 = parseInt(b.getAttribute("x2"));
+
+            tt = setInterval(() => { 
+                ax1 += t
+                ab -= t
+                bx2 += t
+                a.setAttribute("x1", ax1)
+                b.setAttribute("x2", bx2)
+                a.setAttribute("x2", ab)
+                b.setAttribute("x1", ab)
+
+    
+                t += 0.005 * (c*2-1)
+                console.log(c*2,t)
+                if (ab<5 || ab>10) {
+                    clearInterval(tt);
+                }
+            }, 1);
+
+        }
+        openDialog()
+
+
+        
+
+    </script>
+    <script src="public/js/calender.js"></script>
+    <script src="public/js/popup.js"></script>
+</body>
+
+</html>

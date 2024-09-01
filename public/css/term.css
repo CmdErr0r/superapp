@@ -1,0 +1,38 @@
+.term{
+}
+.term-search {
+    text-align: center;
+    font-size: 40px;
+    color: transparent;
+    background: linear-gradient(60deg, var(--one), var(--three));
+    font-weight: 900;
+    background-size: 200% 200%;
+    background-position: 60% 0%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.term-list p {
+    font-size: 20px;
+    display: inline-block;
+    margin: 0;
+}
+
+
+.term-list button {
+    float: right;
+
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 0;
+
+    transition: all 300ms;
+    font-size: 10px;
+
+}
+
+.term-list img {
+    width: 20px;
+}

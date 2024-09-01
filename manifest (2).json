@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "only",
+  "version": "1.0",
+  "description": "i dont care",
+  "permissions": ["activeTab","bookmarks"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.mozilla.org/*"],
+      "js": ["main.js"]
+    }
+  ]
+}
