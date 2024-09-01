@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .root {
+            position: relative;
+            width: var(--scale);
+        }
+
+        .timeline {
+            position: absolute;
+            background: #000;
+            border-radius: 10px;
+
+            width: 100%;
+            height: var(--vertex);
+            bottom: 0;
+            left: calc((100% - var(--scale)) /2);
+        }
+
+        .timeline::after {
+            content: "";
+            position: absolute;
+            background: #000;
+            border-radius: 10px;
+
+            right: 0;
+            width: var(--vertex);
+            height: var(--heigher);
+            top: 0;
+        }
+
+        .reversedtimeline::after {
+            right: auto;
+        }
+
+        .deadtimeline::after {
+            height: 0;
+        }
+
+        .time {
+            --sizedX: 120px;
+            --sizedY: 160px;
+
+            position: absolute;
+            border-radius: 50%;
+            /* background: radial-gradient(#8033fd, #002c89e0); */
+            background: var(--col, #000645);
+            background-size: 300% 300%;
+            background-position: 50% 50%;
+
+            width: var(--node);
+            height: var(--node);
+
+            font-weight: 1000;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .time::after {
+            font-size: 4px !important;
+
+            content: var(--content);
+            position: absolute;
+            top: 20px;
+        }
+
+        .time::before {
+            position: absolute;
+            visibility: hidden;
+            content: var(--contentED);
+            width: var(--sizedX);
+            height: var(--sizedY);
+
+            z-index: 1;
+            top: 22px;
+            left: calc((-1 * var(--sizedX) + var(--node)) / 2);
+
+            opacity: 1;
+            color:#fff;
+            background: #000;
+            font-size: 4px !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time:hover::before {
+            animation: openAir .8s alternate;
+            visibility: visible;
+        }
+
+        .active {
+            animation: colorful 5s infinite 2s;
+        }
+
+        @keyframes colorful {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            20% {
+                background-position: 50% 50%;
+            }
+
+            50% {
+                background-position: 80% 60%;
+            }
+
+            100% {
+                background-position: 80% 50%;
+            }
+
+        }
+
+
+        @keyframes openAir {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="root" id="root">
+    </div>
+    <script>
+        const root = document.getElementById("root");
+        const heigher = 120;
+
+        const heigherS = 50; // yukarıya olan yükseklik px
+        const scale = 90; // 
+        const node = 20; // düğüm uzunluğu
+        const vertex = 4; // ağ genişliği 
+        root.style.setProperty('--heigher', `${heigher + 4}px`);
+        root.style.setProperty('--vertex', `${vertex}px`);
+        root.style.setProperty('--scale', `${scale}%`);
+        root.style.setProperty('--node', `${node}px`);
+
+        const years = ["2023", "2024", "2025"];
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const d = new Date();
+        let now = `${years.indexOf(d.getFullYear().toString())}_${d.getMonth()}`
+        let agent = {
+            "1_4":{ "title": "18 Mayıs 2024 ta sınav", "contents": ["29 Nisan 2024 17.30a son başvuru"] }
+        }
+
+        const createSpace = () => {
+            for (let i = 0; i < years.length; i++) {
+                const timeline = document.createElement("div");
+                timeline.classList.add("timeline", i % 2 ? "reversedtimeline" : i == years.length - 1 ? "deadtimeline" : "none");
+
+                timeline.style.bottom = -heigherS - i * heigher + "px";
+
+                root.appendChild(timeline);
+            }
+        }
+
+        const addSpace = () => {
+            // let cursor = [0,0];
+            for (let i = 0; i < years.length; i++) {
+                for (let ii = 0; ii < months.length; ii++) {
+                    const time = document.createElement("div");
+                    time.classList.add("time");
+                    time.style.setProperty('--content', `\'${years[i]} ${months[ii]}\'`)
+                    if(`${i}_${ii}` == now){
+                        time.style.setProperty('--col', `#b100e6`)
+                    }
+                    if(agent[`${i}_${ii}`]){
+                        time.style.setProperty('--col', `#00ff4c`)
+                        
+                        sendMe = `${years[i]} ${months[ii]}${ agent[`${i}_${ii}`]["title"] }`
+                        agent[`${i}_${ii}`]["contents"].forEach(e => {sendMe+=e;});
+                        time.style.setProperty('--contentED', `\'${sendMe}\'`);
+                    }
+                    
+                    time.style.bottom = `calc(${(vertex - node) / 2}px - ${heigherS}px - ${i * heigher}px)`;
+                    if (i % 2)
+                        time.style.right = `calc( ( -${(100 - scale) / 2}%  - ${node / 2}px +  ${ii * 9.090909}%))`;
+                    else
+                        time.style.left = `calc( ( ${(100 - scale) / 2}%  - ${node / 2}px +  ${ii * 9.090909}%))`;
+
+                    root.appendChild(time);
+                }
+            }
+        }
+
+        createSpace()
+        addSpace()
+    </script>
+</body>
+
+</html>

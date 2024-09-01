@@ -1,0 +1,71 @@
+.calender {
+    width: 240px;
+    font-weight: 900;
+}
+
+.calender-head {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center
+}
+
+.calender-head button {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.calender-head-month {
+    text-align: center;
+    padding-left: 10px;
+}
+
+.calender-body-list {
+    display: block;
+    flex-direction: column;
+    grid-template-rows: 1fr 1fr;
+}
+
+.calender-body-list div,
+.calender-body div:first-child {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.calender-body>div {
+    font-weight: 1000;
+}
+
+.calender-body li {
+    list-style: none;
+    font-size: 16px;
+
+    width: var(--h);
+    padding: 4px;
+    text-align: center;
+}
+
+.calender-body p {
+    margin: 0;
+}
+
+.calender-body li:hover:not(.des) {
+    background: var(--two);
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.calender-body > div:first-child li:hover {
+    cursor: initial;
+    background: transparent;
+    color: #000
+}
+
+.calender-body li::selection {
+    display: none;
+}
+
