@@ -5,5 +5,7 @@ function batteryStatus() {
     port.onMessage.addListener((res)=>{
         console.log("okay, res=",res)
     })
+
+    port.postMessage({ command: "run" });
 }
 batteryStatus()
