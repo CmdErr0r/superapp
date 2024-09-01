@@ -2,299 +2,207 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./calander.css">
-  <link rel="stylesheet" href="./sc.css">
-  </link>
-  <link rel="stylesheet" href="./timer.css">
-  </link>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
 
+        .root {
+            position: relative;
+            width: var(--scale);
+        }
+
+        .timeline {
+            position: absolute;
+            background: #000;
+            border-radius: 10px;
+
+            width: 100%;
+            height: var(--vertex);
+            bottom: 0;
+            left: calc((100% - var(--scale)) /2);
+        }
+
+        .timeline::after {
+            content: "";
+            position: absolute;
+            background: #000;
+            border-radius: 10px;
+
+            right: 0;
+            width: var(--vertex);
+            height: var(--heigher);
+            top: 0;
+        }
+
+        .reversedtimeline::after {
+            right: auto;
+        }
+
+        .deadtimeline::after {
+            height: 0;
+        }
+
+        .time {
+            --sizedX: 120px;
+            --sizedY: 160px;
+
+            position: absolute;
+            border-radius: 50%;
+            /* background: radial-gradient(#8033fd, #002c89e0); */
+            background: var(--col, #000645);
+            background-size: 300% 300%;
+            background-position: 50% 50%;
+
+            width: var(--node);
+            height: var(--node);
+
+            font-weight: 1000;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .time::after {
+            font-size: 4px !important;
+
+            content: var(--content);
+            position: absolute;
+            top: 20px;
+        }
+
+        .time::before {
+            position: absolute;
+            visibility: hidden;
+            content: var(--contentED);
+            width: var(--sizedX);
+            height: var(--sizedY);
+
+            z-index: 1;
+            top: 22px;
+            left: calc((-1 * var(--sizedX) + var(--node)) / 2);
+
+            opacity: 1;
+            color:#fff;
+            background: #000;
+            font-size: 4px !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time:hover::before {
+            animation: openAir .8s alternate;
+            visibility: visible;
+        }
+
+        .active {
+            animation: colorful 5s infinite 2s;
+        }
+
+        @keyframes colorful {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            20% {
+                background-position: 50% 50%;
+            }
+
+            50% {
+                background-position: 80% 60%;
+            }
+
+            100% {
+                background-position: 80% 50%;
+            }
+
+        }
+
+
+        @keyframes openAir {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="calander"></div>
-  <div class="time">
-    <div class="timer">
-      <div class="select-text">
-        <p>hours</p>
-        <p>minutes</p>
-        <p>seconds</p>
-      </div>
-      <div class="select">
-        <select id="hours" class="select select-bordered update-hash">
-          <option value="00">00</option>
-          <option value="01">01</option>
-          <option value="02">02</option>
-          <option value="03">03</option>
-          <option value="04">04</option>
-          <option value="05">05</option>
-          <option value="06">06</option>
-          <option value="07">07</option>
-          <option value="08">08</option>
-          <option value="09">09</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
-          <option value="21">21</option>
-          <option value="22">22</option>
-          <option value="23">23</option>
-        </select>
-        <select id="minutes" class="select select-bordered update-hash">
-          <option value="00">00</option>
-          <option value="01">01</option>
-          <option value="02">02</option>
-          <option value="03">03</option>
-          <option value="04">04</option>
-          <option value="05">05</option>
-          <option value="06">06</option>
-          <option value="07">07</option>
-          <option value="08">08</option>
-          <option value="09">09</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
-          <option value="21">21</option>
-          <option value="22">22</option>
-          <option value="23">23</option>
-          <option value="24">24</option>
-          <option value="25">25</option>
-          <option value="26">26</option>
-          <option value="27">27</option>
-          <option value="28">28</option>
-          <option value="29">29</option>
-          <option value="30">30</option>
-          <option value="31">31</option>
-          <option value="32">32</option>
-          <option value="33">33</option>
-          <option value="34">34</option>
-          <option value="35">35</option>
-          <option value="36">36</option>
-          <option value="37">37</option>
-          <option value="38">38</option>
-          <option value="39">39</option>
-          <option value="40">40</option>
-          <option value="41">41</option>
-          <option value="42">42</option>
-          <option value="43">43</option>
-          <option value="44">44</option>
-          <option value="45">45</option>
-          <option value="46">46</option>
-          <option value="47">47</option>
-          <option value="48">48</option>
-          <option value="49">49</option>
-          <option value="50">50</option>
-          <option value="51">51</option>
-          <option value="52">52</option>
-          <option value="53">53</option>
-          <option value="54">54</option>
-          <option value="55">55</option>
-          <option value="56">56</option>
-          <option value="57">57</option>
-          <option value="58">58</option>
-          <option value="59">59</option>
-        </select>
-        <select id="seconds" class="select select-bordered update-hash">
-          <option value="00">00</option>
-          <option value="01">01</option>
-          <option value="02">02</option>
-          <option value="03">03</option>
-          <option value="04">04</option>
-          <option value="05">05</option>
-          <option value="06">06</option>
-          <option value="07">07</option>
-          <option value="08">08</option>
-          <option value="09">09</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
-          <option value="21">21</option>
-          <option value="22">22</option>
-          <option value="23">23</option>
-          <option value="24">24</option>
-          <option value="25">25</option>
-          <option value="26">26</option>
-          <option value="27">27</option>
-          <option value="28">28</option>
-          <option value="29">29</option>
-          <option value="30">30</option>
-          <option value="31">31</option>
-          <option value="32">32</option>
-          <option value="33">33</option>
-          <option value="34">34</option>
-          <option value="35">35</option>
-          <option value="36">36</option>
-          <option value="37">37</option>
-          <option value="38">38</option>
-          <option value="39">39</option>
-          <option value="40">40</option>
-          <option value="41">41</option>
-          <option value="42">42</option>
-          <option value="43">43</option>
-          <option value="44">44</option>
-          <option value="45">45</option>
-          <option value="46">46</option>
-          <option value="47">47</option>
-          <option value="48">48</option>
-          <option value="49">49</option>
-          <option value="50">50</option>
-          <option value="51">51</option>
-          <option value="52">52</option>
-          <option value="53">53</option>
-          <option value="54">54</option>
-          <option value="55">55</option>
-          <option value="56">56</option>
-          <option value="57">57</option>
-          <option value="58">58</option>
-          <option value="59">59</option>
-        </select>
-      </div>
+    <div class="root" id="root">
     </div>
-    <div class="alarm"></div>
-    <div class="stopwatch"></div>
-    <div class="time"></div>
-    
-    <div class="flatpickr-calendar hasTime animate arrowTop arrowLeft open" tabindex="-1" style="top: 174px; left: 26px; right: auto;">
-      <div class="flatpickr-months">
-        <span class="flatpickr-prev-month">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17"><g></g><path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z"></path></svg>
-        </span>
-        <div class="flatpickr-month">
-          <div class="flatpickr-current-month">
-            <select class="flatpickr-monthDropdown-months" aria-label="Month" tabindex="-1">
-              <option class="flatpickr-monthDropdown-month" value="0" tabindex="-1">January</option>
-              <option class="flatpickr-monthDropdown-month" value="1" tabindex="-1">February</option>
-              <option class="flatpickr-monthDropdown-month" value="2" tabindex="-1">March</option>
-              <option class="flatpickr-monthDropdown-month" value="3" tabindex="-1">April</option>
-              <option class="flatpickr-monthDropdown-month" value="4" tabindex="-1">May</option>
-              <option class="flatpickr-monthDropdown-month" value="5" tabindex="-1">June</option>
-              <option class="flatpickr-monthDropdown-month" value="6" tabindex="-1">July</option>
-              <option class="flatpickr-monthDropdown-month" value="7" tabindex="-1">August</option>
-              <option class="flatpickr-monthDropdown-month" value="8" tabindex="-1">September</option>
-              <option class="flatpickr-monthDropdown-month" value="9" tabindex="-1">October</option>
-              <option class="flatpickr-monthDropdown-month" value="10" tabindex="-1">November</option>
-              <option class="flatpickr-monthDropdown-month" value="11" tabindex="-1">December</option>
-            </select>
-            <div class="numInputWrapper">
-              <input class="numInput cur-year" type="number" tabindex="-1" aria-label="Year">
-              <span class="arrowUp"></span>
-              <span class="arrowDown"></span>
-            </div>
-          </div>
-        </div>
-        <span class="flatpickr-next-month">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17"><g></g><path d="M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z"></path></svg>
-        </span>
-      </div>
-      <div class="flatpickr-innerContainer">
-        <div class="flatpickr-rContainer">
-          <div class="flatpickr-weekdays">
-            <div class="flatpickr-weekdaycontainer">
-              <span class="flatpickr-weekday">Sun</span>
-              <span class="flatpickr-weekday">Mon</span>
-              <span class="flatpickr-weekday">Tue</span>
-              <span class="flatpickr-weekday">Wed</span>
-              <span class="flatpickr-weekday">Thu</span>
-              <span class="flatpickr-weekday">Fri</span>
-              <span class="flatpickr-weekday">Sat</span>
-            </div>
-          </div>
-          <div class="flatpickr-days" tabindex="-1">
-            <div class="dayContainer">
-              <span class="flatpickr-day prevMonthDay" aria-label="July 28, 2024" tabindex="-1">28</span>
-              <span class="flatpickr-day prevMonthDay" aria-label="July 29, 2024" tabindex="-1">29</span>
-              <span class="flatpickr-day prevMonthDay" aria-label="July 30, 2024" tabindex="-1">30</span>
-              <span class="flatpickr-day prevMonthDay" aria-label="July 31, 2024" tabindex="-1">31</span>
-              <span class="flatpickr-day" aria-label="August 1, 2024" tabindex="-1">1</span>
-              <span class="flatpickr-day" aria-label="August 2, 2024" tabindex="-1">2</span>
-              <span class="flatpickr-day" aria-label="August 3, 2024" tabindex="-1">3</span>
-              <span class="flatpickr-day" aria-label="August 4, 2024" tabindex="-1">4</span>
-              <span class="flatpickr-day" aria-label="August 5, 2024" tabindex="-1">5</span>
-              <span class="flatpickr-day" aria-label="August 6, 2024" tabindex="-1">6</span>
-              <span class="flatpickr-day" aria-label="August 7, 2024" tabindex="-1">7</span>
-              <span class="flatpickr-day" aria-label="August 8, 2024" tabindex="-1">8</span>
-              <span class="flatpickr-day today" aria-label="August 9, 2024" aria-current="date" tabindex="-1">9</span>
-              <span class="flatpickr-day" aria-label="August 10, 2024" tabindex="-1">10</span>
-              <span class="flatpickr-day" aria-label="August 11, 2024" tabindex="-1">11</span>
-              <span class="flatpickr-day" aria-label="August 12, 2024" tabindex="-1">12</span>
-              <span class="flatpickr-day" aria-label="August 13, 2024" tabindex="-1">13</span>
-              <span class="flatpickr-day" aria-label="August 14, 2024" tabindex="-1">14</span>
-              <span class="flatpickr-day" aria-label="August 15, 2024" tabindex="-1">15</span>
-              <span class="flatpickr-day" aria-label="August 16, 2024" tabindex="-1">16</span>
-              <span class="flatpickr-day" aria-label="August 17, 2024" tabindex="-1">17</span>
-              <span class="flatpickr-day" aria-label="August 18, 2024" tabindex="-1">18</span>
-              <span class="flatpickr-day" aria-label="August 19, 2024" tabindex="-1">19</span>
-              <span class="flatpickr-day" aria-label="August 20, 2024" tabindex="-1">20</span>
-              <span class="flatpickr-day" aria-label="August 21, 2024" tabindex="-1">21</span>
-              <span class="flatpickr-day" aria-label="August 22, 2024" tabindex="-1">22</span>
-              <span class="flatpickr-day" aria-label="August 23, 2024" tabindex="-1">23</span>
-              <span class="flatpickr-day" aria-label="August 24, 2024" tabindex="-1">24</span>
-              <span class="flatpickr-day" aria-label="August 25, 2024" tabindex="-1">25</span>
-              <span class="flatpickr-day" aria-label="August 26, 2024" tabindex="-1">26</span>
-              <span class="flatpickr-day" aria-label="August 27, 2024" tabindex="-1">27</span>
-              <span class="flatpickr-day" aria-label="August 28, 2024" tabindex="-1">28</span>
-              <span class="flatpickr-day" aria-label="August 29, 2024" tabindex="-1">29</span>
-              <span class="flatpickr-day" aria-label="August 30, 2024" tabindex="-1">30</span>
-              <span class="flatpickr-day" aria-label="August 31, 2024" tabindex="-1">31</span>
-              <span class="flatpickr-day nextMonthDay" aria-label="September 1, 2024" tabindex="-1">1</span>
-              <span class="flatpickr-day nextMonthDay" aria-label="September 2, 2024" tabindex="-1">2</span>
-              <span class="flatpickr-day nextMonthDay" aria-label="September 3, 2024" tabindex="-1">3</span>
-              <span class="flatpickr-day nextMonthDay" aria-label="September 4, 2024" tabindex="-1">4</span>
-              <span class="flatpickr-day nextMonthDay" aria-label="September 5, 2024" tabindex="-1">5</span>
-              <span class="flatpickr-day nextMonthDay" aria-label="September 6, 2024" tabindex="-1">6</span>
-              <span class="flatpickr-day nextMonthDay" aria-label="September 7, 2024" tabindex="-1">7</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flatpickr-time" tabindex="-1">
-        <div class="numInputWrapper">
-          <input class="numInput flatpickr-hour" type="number" aria-label="Hour" tabindex="-1" step="1" min="1" max="12" maxlength="2">
-          <span class="arrowUp"></span>
-          <span class="arrowDown"></span>
-        </div>
-        <span class="flatpickr-time-separator">:</span>
-        <div class="numInputWrapper">
-          <input class="numInput flatpickr-minute" type="number" aria-label="Minute" tabindex="-1" step="5" min="0" max="59" maxlength="2">
-          <span class="arrowUp"></span>
-          <span class="arrowDown"></span>
-        </div>
-        <span class="flatpickr-am-pm" title="Click to toggle" tabindex="-1">PM</span>
-      </div>
-    </div>
-  
-  
-  </div>
+    <script>
+        const root = document.getElementById("root");
+        const heigher = 120;
 
-  <script src="./calander.js"></script>
-  <script src="./timer.js"></script>
+        const heigherS = 50; // yukarıya olan yükseklik px
+        const scale = 90; // 
+        const node = 20; // düğüm uzunluğu
+        const vertex = 4; // ağ genişliği 
+        root.style.setProperty('--heigher', `${heigher + 4}px`);
+        root.style.setProperty('--vertex', `${vertex}px`);
+        root.style.setProperty('--scale', `${scale}%`);
+        root.style.setProperty('--node', `${node}px`);
 
+        const years = ["2023", "2024", "2025"];
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const d = new Date();
+        let now = `${years.indexOf(d.getFullYear().toString())}_${d.getMonth()}`
+        let agent = {
+            "1_4":{ "title": "18 Mayıs 2024 ta sınav", "contents": ["29 Nisan 2024 17.30a son başvuru"] }
+        }
 
+        const createSpace = () => {
+            for (let i = 0; i < years.length; i++) {
+                const timeline = document.createElement("div");
+                timeline.classList.add("timeline", i % 2 ? "reversedtimeline" : i == years.length - 1 ? "deadtimeline" : "none");
+
+                timeline.style.bottom = -heigherS - i * heigher + "px";
+
+                root.appendChild(timeline);
+            }
+        }
+
+        const addSpace = () => {
+            // let cursor = [0,0];
+            for (let i = 0; i < years.length; i++) {
+                for (let ii = 0; ii < months.length; ii++) {
+                    const time = document.createElement("div");
+                    time.classList.add("time");
+                    time.style.setProperty('--content', `\'${years[i]} ${months[ii]}\'`)
+                    if(`${i}_${ii}` == now){
+                        time.style.setProperty('--col', `#b100e6`)
+                    }
+                    if(agent[`${i}_${ii}`]){
+                        time.style.setProperty('--col', `#00ff4c`)
+                        
+                        sendMe = `${years[i]} ${months[ii]}${ agent[`${i}_${ii}`]["title"] }`
+                        agent[`${i}_${ii}`]["contents"].forEach(e => {sendMe+=e;});
+                        time.style.setProperty('--contentED', `\'${sendMe}\'`);
+                    }
+                    
+                    time.style.bottom = `calc(${(vertex - node) / 2}px - ${heigherS}px - ${i * heigher}px)`;
+                    if (i % 2)
+                        time.style.right = `calc( ( -${(100 - scale) / 2}%  - ${node / 2}px +  ${ii * 9.090909}%))`;
+                    else
+                        time.style.left = `calc( ( ${(100 - scale) / 2}%  - ${node / 2}px +  ${ii * 9.090909}%))`;
+
+                    root.appendChild(time);
+                }
+            }
+        }
+
+        createSpace()
+        addSpace()
+    </script>
 </body>
 
 </html>

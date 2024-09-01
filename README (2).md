@@ -1,2 +1,0 @@
-todo
-* make page rebuiltable
