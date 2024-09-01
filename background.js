@@ -1,14 +1,14 @@
 
-browser.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
+browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if(msg["command"] == "getBatteryStatus"){
-        port = getBatteryStatus()
-        port.onMessage.addListener((res) => {
-            port.disconnect();
-            return new Promise((resolve)=>{
-                console.log("resed",res)
+        return new Promise(async (resolve)=>{
+            port = getBatteryStatus()
+            port.onMessage.addListener((res) => {
+                port.disconnect();
+                console.log(res)
                 resolve(res)
-            })
-        });
+            });
+        })
     }
 });
 
