@@ -1,6 +1,6 @@
-browser.newtab.override({
-    url: "newtab.html"
-})
+// browser.newtab.override({
+//     url: "newtab.html"
+// })
 
 
 console.log("nag:",nagivator,"and", 'getBattery' in nagivator)
