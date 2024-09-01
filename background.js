@@ -1,9 +1,8 @@
-// browser.newtab.override({
-//     url: "newtab.html"
-// })
+function batteryStatus() {
+    let port = browser.runtime.connectNative("com.example.battery")
 
-
-console.log("nag:",nagivator,"and", 'getBattery' in nagivator)
-console.log("browser:",browser,"and", 'getBattery' in browser)
-
-console.log(1)
+    port.onMessage((res)=>{
+        console.log("okay, res=",res)
+    })
+}
+batteryStatus()

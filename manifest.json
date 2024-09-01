@@ -2,7 +2,7 @@
     "manifest_version":3,
     "version":"1.0.0",
     "name":"supertab",
-    "permissions":["tabs", "activeTab", "newtab", "storage", "power", "bookmarks"],
+    "permissions":["tabs", "activeTab", "newtab", "storage", "nativeMessaging", "bookmarks"],
     "background":{
         "scripts": ["background.js"]
     },
