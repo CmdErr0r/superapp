@@ -1,16 +1,10 @@
 
 browser.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
     console.log("msg")
-    console.log(msg)
-    console.log(sender)
-
-
-    // console.log("c",command,"d", data);
-    // if (command==getBatteryStatus){
-    //     getBatteryStatus();
-    //     new Permissions()
-    //     // return 
-    // }
+    if(msg["command"] == "getBatteryStatus"){
+        res = getBatteryStatus()
+        if (res) sendResponse(res)
+    }
 });
 
 function getBatteryStatus() {
@@ -21,19 +15,19 @@ function getBatteryStatus() {
         port.disconnect();
         
         if (!res.success)
-            return
+            throw new Error("Error accourated on app type")
         
-        browser.tabs.query({ active:true, currentWindow:true }).then((tabs)=>{
-            browser.tabs.sendMessage(tabs[0].id, { command:"BatteryStatus", data:res })
-        })
+        return res
+        
+        // browser.tabs.query({ active:true, currentWindow:true }).then((tabs)=>{
+        //     browser.tabs.sendMessage(tabs[0].id, { command:"BatteryStatus", data:res })
+        // })
 
     });
 
     port.onDisconnect.addListener((p) => {
-        if (browser.runtime.lastError){
-            console.error(`Disconnected due to error: ${browser.runtime.lastError.message}`);
-            return
-        }
+        if (browser.runtime.lastError)            
+            throw new Error(`Disconnected due to error: ${browser.runtime.lastError.message}`);
 
         console.log("Port disconnected");
     });
