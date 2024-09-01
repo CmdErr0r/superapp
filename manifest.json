@@ -4,7 +4,8 @@
     "name":"supertab",
     "permissions":["tabs", "activeTab", "newtab", "storage", "nativeMessaging", "bookmarks"],
     "background":{
-        "scripts": ["background.js"]
+        "scripts": ["background.js"],
+        "service_worker": "background.js"
     },
     "chrome_settings_overrides": {
         "homepage": "index.html"
