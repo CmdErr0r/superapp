@@ -1,10 +1,10 @@
 
 browser.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
     if(msg["command"] == "getBatteryStatus") {
-        res = getBatteryStatus()
-        if (res){
+        data = getBatteryStatus()
+        if (data){
             return new Promise((resolve)=>{
-                resolve({ data: res, success: true })
+                resolve({ data })
             })
         }
     }
