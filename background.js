@@ -1,7 +1,7 @@
 
-browser.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
+browser.runtime.onMessage.addListener(async (msg, sender, sendResponse)=>{
     if(msg["command"] == "getBatteryStatus"){
-        res = getBatteryStatus()
+        res = await getBatteryStatus()
         console.log(res)
         if (res) {
             return new Promise((resolve)=>{
@@ -20,7 +20,7 @@ function getBatteryStatus() {
         
         console.log("res")
         console.log(res)
-        
+
         if (!res.success)
             throw new Error("Error accourated on app type")
         
