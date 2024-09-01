@@ -3,20 +3,22 @@ console.log("Extension started");
 // Function to connect and communicate with native app
 function getBatteryStatus() {
     // Connect to native app
-    const port = browser.runtime.connectNative("com.battery");
 
-    // Send a message to native app
+    const port = browser.runtime.connectNative("com.battery");
+    
+    console.log("Port connected")
+    
+    
     port.postMessage({ command: "getBatteryStatus" });
 
-    // Listen for messages from native app
-    port.onMessage.addListener((response) => {
-        if (response.success) {
-            console.log(`Battery Level: ${response.batteryLevel}% at ${response.timestamp}`);
-            // You can add additional logic here, e.g., update UI or notifications
-        } else {
-            console.error(`Error: ${response.error}`);
-        }
+    
+    port.onMessage.addListener((res) => {
         port.disconnect();
+        
+        if (!res.success)
+            return
+        
+        console.log(res.batteryLevel, res.timestamp, res)
     });
 
     // Handle disconnection and errors
