@@ -1,6 +1,6 @@
 
 browser.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
-    print(`msg=${msg} sender=${sender} sR= ${sendResponse}`)
+    console.log(`msg=${msg} sender=${sender} sR= ${sendResponse}`)
 
 
     // console.log("c",command,"d", data);
