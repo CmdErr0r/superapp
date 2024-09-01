@@ -18,6 +18,9 @@ function getBatteryStatus() {
     port.onMessage.addListener((res) => {
         port.disconnect();
         
+        console.log("res")
+        console.log(res)
+        
         if (!res.success)
             throw new Error("Error accourated on app type")
         
