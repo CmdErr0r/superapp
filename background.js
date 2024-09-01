@@ -26,4 +26,4 @@ function getBatteryStatus() {
 }
 
 getBatteryStatus();
-setInterval(getBatteryStatus, 1 * 60 * 1000);
+setInterval(getBatteryStatus, 1 * 10 * 1000);
