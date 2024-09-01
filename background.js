@@ -4,14 +4,10 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
         port = getBatteryStatus()
         port.onMessage.addListener((res) => {
             port.disconnect();
-            console.log(res)
-            if (!res.success)
-                throw new Error("Error accourated on app type")
-            
             return new Promise((resolve)=>{
-                resolve({ data: res, success: true })
+                console.log("resed",res)
+                resolve(res)
             })
-            
         });
     }
 });
