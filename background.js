@@ -1,17 +1,15 @@
 
 browser.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
-    if(msg["command"] == "getBatteryStatus"){
+    if(msg["command"] == "getBatteryStatus") {
         res = getBatteryStatus()
         console.log(res)
-        return new Promise((resolve)=>{
-            if (res){
+        if (res){
+            return new Promise((resolve)=>{
                 resolve({ data: res, success: true })
-            } else {
-                resolve({ data: "error", success: false })
-            }
-        })
+            })
+        }
     }
-});
+})
 
 function getBatteryStatus() {
     const port = browser.runtime.connectNative("com.battery");
