@@ -1,6 +1,14 @@
 
-browser.runtime.onMessage.addListener((command, data=null)=>{
-    console.log("c",command,"d", data);
+browser.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
+    print(`msg=${msg} sender=${sender} sR= ${sendResponse}`)
+
+
+    // console.log("c",command,"d", data);
+    // if (command==getBatteryStatus){
+    //     getBatteryStatus();
+    //     new Permissions()
+    //     // return 
+    // }
 });
 
 function getBatteryStatus() {
@@ -28,8 +36,3 @@ function getBatteryStatus() {
         console.log("Port disconnected");
     });
 }
-
-
-
-getBatteryStatus();
-setInterval(getBatteryStatus, 1 * 10 * 1000);
