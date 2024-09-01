@@ -5,12 +5,16 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             port = getBatteryStatus()
             port.onMessage.addListener((res) => {
                 port.disconnect();
-                console.log(res)
                 resolve(res)
             });
         })
     }
 });
+
+// browser.tabs.query({ active:true, currentWindow:true }).then((tabs)=>{
+//     browser.tabs.sendMessage(tabs[0].id, { command:"", data:data })
+// })
+
 
 function getBatteryStatus() {
     const port = browser.runtime.connectNative("com.battery");
