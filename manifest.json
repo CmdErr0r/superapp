@@ -11,5 +11,10 @@
     },
         "chrome_url_overrides": {
         "newtab": "index.html"
+    },
+    "browser_specific_settings":{
+        "gecko": {
+            "id": "com.battery@localhost"
+        }
     }
 }
