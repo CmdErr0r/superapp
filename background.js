@@ -1,4 +1,8 @@
 
+browser.runtime.onMessage.addListener((command, data=null)=>{
+    console.log("c",command,"d", data);
+});
+
 function getBatteryStatus() {
     const port = browser.runtime.connectNative("com.battery");
     port.postMessage({ command: "getBatteryStatus" });
@@ -12,7 +16,7 @@ function getBatteryStatus() {
         browser.tabs.query({ active:true, currentWindow:true }).then((tabs)=>{
             browser.tabs.sendMessage(tabs[0].id, { command:"BatteryStatus", data:res })
         })
-        console.log(res.batteryLevel, res.timestamp, res)
+
     });
 
     port.onDisconnect.addListener((p) => {
@@ -24,6 +28,8 @@ function getBatteryStatus() {
         console.log("Port disconnected");
     });
 }
+
+
 
 getBatteryStatus();
 setInterval(getBatteryStatus, 1 * 10 * 1000);
