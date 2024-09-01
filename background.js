@@ -3,6 +3,7 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse)=>{
     if(msg["command"] == "getBatteryStatus") {
         data = getBatteryStatus()
         if (data){
+            console.log(data)
             return new Promise((resolve)=>{
                 resolve({ data })
             })
@@ -20,8 +21,6 @@ function getBatteryStatus() {
         if (!res.success)
             throw new Error("Error accourated on app type")
         
-        console.log("res")
-        console.log(res)
         return res
         
         // browser.tabs.query({ active:true, currentWindow:true }).then((tabs)=>{
