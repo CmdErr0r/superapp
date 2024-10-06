@@ -1,21 +1,52 @@
-body{min-height:100vh;}
-.calander{
+.calander {
+  display:flex;
+  flex-direction:row;
+  overflow-y:scroll;
+  padding-bottom:10px;
 }
-.calander-content{
- min-width:400px;
+.calander div {
+  padding:0 10px;
+  min-width: 150px;
 }
-.calander-content ul{
+.calander .selected {
+  background:red;
+}
+
+.calander-content {
  display:grid;
- grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
- padding:0;
+ grid-template-columns: repeat(7, 1fr); 
+ padding:0 !important;
 }
-.calander-content li{
- list-style-type:none;
- display:inline-block;
+
+.calander-content li {
+  list-style-type:none;
+  display:inline-block;
+  font-size:12px;
+  padding:4px 0;
+  text-align: center;
 }
+
+.calander-content .todate{
+  background:red;
+  border-radius: 50%;
+  color:#fff; 
+} 
+  
+.calander-content .date-1{
+  visibility: hidden;
+}
+.calander-content .date1{
+  display: none;
+}
+
+.calander-content .day{
+  font-weight: bold;
+  padding:0;
+}
+
 .calander-info{
- display:grid;
- grid-template-columns:1fr 1fr 1fr 1fr;
+ /* display:grid; */
+ /* grid-template-columns:1fr 1fr 1fr 1fr; */
 }
 .calander-arrow{
  display:flex;

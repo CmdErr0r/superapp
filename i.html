@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar Component</title>
+
+  <link rel="stylesheet" href="./calander.css"/>
+  <link rel="stylesheet" href="./sc.css"/>
+  <link rel="stylesheet" href="./timer.css"/>
+
+  <style>
+    body {
+      padding:0;
+      margin:0;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 24px;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    } 
+    .header {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 24px;
+      font-weight: 300;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .calendar-grid .day {
+      font-weight: bold;
+    }
+    .calendar-grid .date {
+      padding: 8px;
+    }
+    .calendar-grid .date.red {
+      color: red;
+    }
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .border {
+      border: 1px solid #ddd;
+    }
+    .h-32 {
+      height: 128px;
+    }
+    .footer {
+      margin-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .footer .lines {
+      width: 33%;
+    }
+    .footer .lines .line {
+      border-bottom: 1px solid #ddd;
+      margin-top: 16px;
+    }
+    .footer .actions {
+      display: flex;
+      align-items: center;
+    }
+    .footer .actions .icon {
+      font-size: 32px;
+      color: #ccc;
+    }
+    .footer .box {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .footer .box h2 {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="calander"></div>
+
+    <div class="footer">
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+
+      <div class="actions">
+        <i class="icon lucide lucide-plus-circle"></i>
+        <div class="box">
+          <h2>OCT TODO</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./calander.js"></script>
+  <script>
+    const cal = document.querySelector(".calander");
+    
+    const deadline = [new Date(2025, 5)];
+    const calander = new Calander(deadline);
+    let j = calander.timeCounter(cal);
+    
+  </script>
+  <script src="./timer.js"></script>
+</body>
+</html>
